@@ -1,5 +1,7 @@
 # OnMyWay_V3
-### 경로상 장소 검색/추천 서비스 OnMyWay 통합 레포지토리 (v3)
+
+### 경로상 장소 검색/추천 서비스 OnMyWay 통합 레포지토리 (Ver 3.0, Kubernetes Architecture applied)
+
 ### Kubernetes architecture applied version of the service 'OnMyWay - place search/recommendation service along the driving route'
 
 This is a Mono Repo containing 3 sub-repositories.
@@ -9,6 +11,7 @@ This is a Mono Repo containing 3 sub-repositories.
 - OnMyWay_FE : Frontend(Mobile) Repository
 
 ### Main Tech Stacks Used (To be Modified)
+
 - OnMyWay_AUTH : Springboot, Spring Security, Spring Cloud, Spring Data JPA, MySQL, Jenkins
 - OnMyWay_BE : Nest.js, Typescript, KakaoMap API, OpenAI API, Axios, Jenkins
 - OnMyWay_FE : ReactNative, Typescript, NaverMap SDK, TMap SDK, Axios, MS Codepush
@@ -17,6 +20,7 @@ This is a Mono Repo containing 3 sub-repositories.
 Please refer to README.md of each sub-repositories for more details.
 
 ### Service Architecture (V3)
+
 TBU
 
 ![image](https://github.com/user-attachments/assets/06806b05-ce76-46f7-915b-67d33f3513fc)
