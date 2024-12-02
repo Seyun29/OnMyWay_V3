@@ -17,7 +17,7 @@ spring:
   datasource:
     url: "jdbc:mysql://localhost:3306/onmyway"
     username: "root"
-    password: "1052"
+    password: "jjgg0825"
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -28,7 +28,6 @@ spring:
         show_sql: true
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
-
 ---
 spring:
   config:
@@ -40,7 +39,7 @@ spring:
       mvc:
         routes:
           - id: proxy_routes
-            uri: http://alb-omw-986932733.ap-northeast-2.elb.amazonaws.com
+            uri: http://${ONMYWAY_API_SERVICE_HOST}:8080
             predicates:
               - Path=/map/**
 
@@ -48,10 +47,9 @@ spring:
     secret: "vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbbonmyway"
 
   datasource:
-    #    url: "jdbc:mysql://onmyway-db-test.cnuan9yf9psv.ap-northeast-2.rds.amazonaws.com:3306/onmyway" #TODO: update to AWS RDS
-    url: "jdbc:mysql://onmyway-db-prod.cnuan9yf9psv.ap-northeast-2.rds.amazonaws.com:3306/onmyway" #TODO: update to AWS RDS
-    username: "root"
-    password: "admin_lgcns" #FIXME: security issue
+    url: "jdbc:mysql://onmyway.c32400yosduj.ap-northeast-2.rds.amazonaws.com:3306/onmyway"
+    username: "admin"
+    password: "onmyway_123"
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

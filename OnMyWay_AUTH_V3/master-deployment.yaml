@@ -1,34 +1,37 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: onmyway-api
+  name: onmyway-auth
 spec:
   selector:
     app: onmyway
-    tier: api
+    tier: auth
   ports:
     - protocol: "TCP"
-      port: 8080
-      targetPort: 80
+      port: 80
+      targetPort: 8080
   type: LoadBalancer
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: onmyway-api
+  name: onmyway-auth
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: onmyway
-      tier: api
+      tier: auth
   template:
     metadata:
       labels:
         app: onmyway
-        tier: api
+        tier: auth
     spec:
       containers: # TODO: Set the resource limits for the container
-        - name: onmyway-be
-          image: seyunjang/omw_api_v3:latest
+        - name: onmyway-auth
+          image: seyunjang/omw_auth_v3:latest
+          env:
+            - name: PROXY_ADDRESS
+              value: "onmyway-api.default"
