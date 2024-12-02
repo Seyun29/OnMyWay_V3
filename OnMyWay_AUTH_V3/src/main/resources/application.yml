@@ -49,7 +49,7 @@ spring:
   datasource:
     url: "jdbc:mysql://onmyway.c32400yosduj.ap-northeast-2.rds.amazonaws.com:3306/onmyway"
     username: "admin"
-    password: "onmyway_123"
+    password: "onmyway_123" #FIXME: fix this security issue
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
