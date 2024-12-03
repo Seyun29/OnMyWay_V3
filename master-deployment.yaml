@@ -1,3 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: onmyway-api
+spec:
+  selector:
+    app: onmyway
+    tier: api
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: 80
+  externalIPs:
+    - 34.64.122.206
+    - 34.47.65.56
+  type: NodePort #FIXME: Change this to LoadBalancer (applly Ingress Controller in advance)
+
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -13,7 +32,28 @@ spec:
   externalIPs:
     - 34.64.122.206
     - 34.47.65.56
-  type: LoadBalancer
+  type: NodePort #FIXME: Change this to LoadBalancer (applly Ingress Controller in advance)
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onmyway-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: onmyway
+      tier: api
+  template:
+    metadata:
+      labels:
+        app: onmyway
+        tier: api
+    spec:
+      containers: # TODO: Set the resource limits for the container
+        - name: onmyway-api
+          image: seyunjang/omw_api_v3:latest
 
 ---
 apiVersion: apps/v1
@@ -38,39 +78,3 @@ spec:
           env:
             - name: PROXY_ADDRESS
               value: "onmyway-api.default"
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: onmyway-api
-spec:
-  selector:
-    app: onmyway
-    tier: api
-  ports:
-    - protocol: "TCP"
-      port: 8080
-      targetPort: 80
-  type: LoadBalancer
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: onmyway-api
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: onmyway
-      tier: api
-  template:
-    metadata:
-      labels:
-        app: onmyway
-        tier: api
-    spec:
-      containers: # TODO: Set the resource limits for the container
-        - name: onmyway-api
-          image: seyunjang/omw_api_v3:latest
