@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Docs sync",
+  "description": "When backend or app behaviour changes, check that the owning document and the progress log change with it.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "OnMyWay_BE_V2/src/**/*.ts",
+      "OnMyWay_FE_V2/src/**/*.ts",
+      "OnMyWay_FE_V2/src/**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A source file just changed. Using .kiro/steering/structure.md (Documentation ownership) and .kiro/steering/definition-of-done.md: (1) decide whether this edit changes observable behaviour, the wire contract, provider selection, cost or release steps; (2) if it does, list which of docs/ARCHITECTURE.md, docs/HOW_IT_WORKS.md, docs/MIGRATION_PLAN.md, docs/PROJECT_CONFIGURATION.md or docs/DEPLOYMENT_CHECKLIST.md must be updated and propose the exact edits; (3) draft a docs/PROGRESS_LOG.md entry with what changed, what was verified and what was not verified. Do not mark anything as verified on device or shipped without evidence."
+  }
+}

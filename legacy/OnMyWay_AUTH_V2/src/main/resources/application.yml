@@ -12,12 +12,12 @@ spring:
       on-profile: local
 
   jwt:
-    secret: "vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbbonmyway"
+    secret: "<MASKED_JWT_SECRET>"
 
   datasource:
     url: "jdbc:mysql://localhost:3306/onmyway"
     username: "root"
-    password: "1052"
+    password: "<MASKED_DB_PASSWORD>"
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -40,18 +40,18 @@ spring:
       mvc:
         routes:
           - id: proxy_routes
-            uri: http://alb-omw-986932733.ap-northeast-2.elb.amazonaws.com
+            uri: http://<MASKED_ALB_DNS>
             predicates:
               - Path=/map/**
 
   jwt:
-    secret: "vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbbonmyway"
+    secret: "<MASKED_JWT_SECRET>"
 
   datasource:
-    #    url: "jdbc:mysql://onmyway-db-test.cnuan9yf9psv.ap-northeast-2.rds.amazonaws.com:3306/onmyway" #TODO: update to AWS RDS
-    url: "jdbc:mysql://onmyway-db-prod.cnuan9yf9psv.ap-northeast-2.rds.amazonaws.com:3306/onmyway" #TODO: update to AWS RDS
+    #    url: "jdbc:mysql://<MASKED_DB_HOST>:3306/onmyway" #TODO: update to AWS RDS
+    url: "jdbc:mysql://<MASKED_DB_HOST>:3306/onmyway" #TODO: update to AWS RDS
     username: "root"
-    password: "admin_lgcns" #FIXME: security issue
+    password: "<MASKED_DB_PASSWORD>" #FIXME: security issue
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

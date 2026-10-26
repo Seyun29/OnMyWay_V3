@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Map provider guard",
+  "description": "Re-check provider policy, error contract and cost guardrails whenever the map module changes.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "OnMyWay_BE_V2/src/modules/map/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The map module changed. Check the edit against .kiro/steering/map-provider-policy.md: no cross-provider fallback was introduced; Korea routes stay Kakao-only and all-abroad routes stay Google-only; errors are still normalized to the five MAP_PROVIDER_* codes without raw upstream payloads; null place fields stay UNKNOWN and are never coerced to false; Google FieldMask, vertex (<=10) and page (<=3) limits are unchanged or their cost impact is documented in docs/FEATURE_INSIGHTS.md. Then run `corepack pnpm --dir OnMyWay_BE_V2 lint`, `build` and `test --runInBand` and report the results."
+  }
+}
