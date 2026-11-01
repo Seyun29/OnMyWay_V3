@@ -1,12 +1,11 @@
 # legacy
 
-2024년에 직접 만들고 운영했던 OnMyWay 백엔드·인프라 구성이다. 지금 서비스(저장소 루트)에서는 쓰지 않는다.
-비밀값(JWT secret, DB 주소·비밀번호, 앱 키, AWS 계정 ID 등)은 `<MASKED_...>`로 가렸다.
+2024년에 직접 만들고 운영했던 OnMyWay 백엔드·인프라 구성이다.
 
 | 폴더 | 시기 | 내용 |
 | --- | --- | --- |
 | [`OnMyWay_AUTH_V2/`](OnMyWay_AUTH_V2) | 2024.08 | Spring Boot 인증·프록시 서버. API 서버 앞단에서 JWT 인가와 reverse proxy, 병목 경로 캐싱을 맡았다 |
-| [`OnMyWay_K8S_V2/`](OnMyWay_K8S_V2) | 2024.11–12 | API·인증 서버를 Kubernetes 매니페스트로 다시 구성한 버전. 원본 저장소: [Seyun29/OnMyWay_V3](https://github.com/Seyun29/OnMyWay_V3) |
+| [`OnMyWay_K8S_V2/`](OnMyWay_K8S_V2) | 2024.11–12 | API·인증 서버를 Kubernetes 매니페스트로 다시 구성한 버전 |
 
 ## 2024.08 — ECS Fargate 고가용성 구조 (LG CNS 인턴 최종 과제)
 
@@ -55,9 +54,3 @@ Service onmyway-api (LoadBalancer :8080 → 80)
   ▼
 Deployment onmyway-api × 2    NestJS (PM2)
 ```
-
-- api·auth를 각각 Deployment(replicas 2)와 Service로 나눴다
-- auth → api 호출은 ALB 주소 대신 Service DNS와 Kubernetes가 주입하는 `*_SERVICE_HOST` 환경변수로 연결했다
-- Service는 NodePort(30080)로 먼저 열어 보고 LoadBalancer로 바꿨다
-- 이미지는 Docker Hub(`seyunjang/omw_api_v3`, `seyunjang/omw_auth_v3`)
-- 마치지 못한 것: resource limits, Ingress Controller(매니페스트 주석에 TODO로 남김). Jenkinsfile은 ECS 배포 버전 그대로라 Kubernetes 배포 자동화는 없다
