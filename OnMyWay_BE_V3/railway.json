@@ -1,7 +1,7 @@
 {
   "build": {
     "builder": "DOCKERFILE",
-    "watchPatterns": ["/OnMyWay_BE_V2/**"]
+    "watchPatterns": ["/OnMyWay_BE_V3/**"]
   },
   "deploy": {
     "healthcheckPath": "/health",

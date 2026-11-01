@@ -31,13 +31,13 @@ Local EAS login, project 연결, Expo SDK 57/`expo-updates` native 구성과 loc
 | 구분                             | 기준 파일/위치                                                               |
 | -------------------------------- | ---------------------------------------------------------------------------- |
 | 루트 명령·패키지 관리자          | `package.json`, `pnpm-lock.yaml`                                             |
-| FE/BE 의존성                     | `OnMyWay_FE_V2/package.json`, `OnMyWay_BE_V2/package.json` 및 각 lockfile    |
-| Android SDK·앱 버전·signing 연결 | `OnMyWay_FE_V2/android/build.gradle`, `android/app/build.gradle`             |
-| iOS 앱 버전·bundle·Team          | `OnMyWay_FE_V2/ios/omw_front.xcodeproj/project.pbxproj`                      |
+| FE/BE 의존성                     | `OnMyWay_FE_V3/package.json`, `OnMyWay_BE_V3/package.json` 및 각 lockfile    |
+| Android SDK·앱 버전·signing 연결 | `OnMyWay_FE_V3/android/build.gradle`, `android/app/build.gradle`             |
+| iOS 앱 버전·bundle·Team          | `OnMyWay_FE_V3/ios/omw_front.xcodeproj/project.pbxproj`                      |
 | 환경변수 이름                    | 각 앱의 `.env.example`; 실제 값은 Git 제외된 `.env`                          |
 | Android release credential       | `~/.gradle/gradle.properties` (`chmod 600`, Git 밖)                          |
-| Android upload keystore          | `OnMyWay_FE_V2/android/app/my-upload-key.keystore` (`*.keystore`로 Git 제외) |
-| iOS native dependency            | `OnMyWay_FE_V2/ios/Podfile`, `Podfile.lock`, `Gemfile.lock`                  |
+| Android upload keystore          | `OnMyWay_FE_V3/android/app/my-upload-key.keystore` (`*.keystore`로 Git 제외) |
+| iOS native dependency            | `OnMyWay_FE_V3/ios/Podfile`, `Podfile.lock`, `Gemfile.lock`                  |
 
 ## 2. Store identity와 현재 출시 기준
 
@@ -65,7 +65,7 @@ MYAPP_UPLOAD_KEY_PASSWORD=<다른 Mac에서 안전하게 복원한 로컬 값>
 
 - `build.gradle`이 위 값을 읽어 release signing을 구성한다. debug의 `android/androiddebugkey` 설정은 개발 전용이다.
 - 새 Mac에서는 **동일한** `my-upload-key.keystore`도 위 경로로 안전하게 복사해야 한다. 새 key를 임의 생성하지 않는다.
-- 검증: `cd OnMyWay_FE_V2/android && ./gradlew signingReport`. release SHA-1은 Play Console의 **Upload certificate**와 비교한다.
+- 검증: `cd OnMyWay_FE_V3/android && ./gradlew signingReport`. release SHA-1은 Play Console의 **Upload certificate**와 비교한다.
 - Google Maps production Android 제한에는 Upload SHA-1이 아니라 Play Console의 **App signing certificate SHA-1**을 사용한다.
 
 ## 4. 환경변수·Google 키 계약
@@ -85,7 +85,7 @@ MYAPP_UPLOAD_KEY_PASSWORD=<다른 Mac에서 안전하게 복원한 로컬 값>
 - 지도 center는 임의 좌표로 초기화하지 않는다. `mapCenterState`/`lastCenterState`의 기본값은 `null`이고, 일반 지도는 실제 위치, 경로 선택 지도는 start/waypoint/end geometry, 지도 직접 선택 화면은 last center → global center → 실제 위치 순서로 초기화한다. 유효 center가 생기기 전 native map을 mount하지 않으며 위치 실패 시 번역된 재시도 UI를 표시한다.
 - 지도 native key 배선: Android는 `app/build.gradle`이 FE `.env`의 Android Google/Naver 값을 manifest placeholder로 주입하고, iOS는 `Inject Map API Configuration` build phase가 iOS Google/Naver 값을 빌드 산출물 Info.plist에만 주입한다. 실제 값은 source plist·문서·Git에 저장하지 않는다.
 - `react-native-maps` `1.29.0`, `@mj-studio/react-native-naver-map` `2.9.0`, GoogleMaps pod `9.4.0`, NMapsMap pod `3.23.2`를 RN 0.86 renderer 기준으로 사용한다.
-- FE는 pnpm `node-linker=hoisted`(`OnMyWay_FE_V2/.npmrc`)를 사용한다. React Native gradle 스크립트가 flat `node_modules` 경로를 요구한다.
+- FE는 pnpm `node-linker=hoisted`(`OnMyWay_FE_V3/.npmrc`)를 사용한다. React Native gradle 스크립트가 flat `node_modules` 경로를 요구한다.
 - `PlaceInputHeader`의 세 action은 icon-only SVG와 typed dictionary의 RN `Text`를 사용한다(`place.current`, `favorite.short`, `map.selectTitle`). 한글 outline glyph가 포함된 기존 SVG는 active UI에서 사용하지 않는다.
 - Google 키는 환경별로 나누지 않고 용도별 3개만 사용한다: Android(`com.omw.omw_front` + debug/Play App Signing SHA-1, Android SDK만), iOS(`com.omw.onmywayapp`, iOS SDK만), server(Places API (New)·Routes API·Geocoding API만).
 - 개발 중 BE는 localhost `3005`에서 실행한다(3000·3001은 다른 로컬 프로젝트가 점유). Nest의 환경변수 미지정 fallback도 `3005`이며 FE는 `SERVER_PORT`만 BE `PORT`와 맞춘다. host는 `Platform.OS`로 자동 선택된다(iOS `localhost`, Android `10.0.2.2`).
@@ -136,7 +136,7 @@ pnpm prod          # BE production build/run
 
 1. Node/JDK/Xcode/Android SDK를 위 기준에 맞추고 `corepack enable` 실행.
 2. FE/BE `.env.example`을 `.env`로 복사한 뒤 실제 값은 안전한 원본에서 복원.
-3. 동일 upload keystore를 `OnMyWay_FE_V2/android/app/my-upload-key.keystore`에 복원.
+3. 동일 upload keystore를 `OnMyWay_FE_V3/android/app/my-upload-key.keystore`에 복원.
 4. `~/.gradle/gradle.properties`에 네 signing 항목을 복원하고 `chmod 600` 적용.
 5. `pnpm install` 후 `./gradlew signingReport`로 release 인증서와 Play Upload certificate 일치 확인.
 6. `node_modules`, `Pods`, `build`, `.gradle`, `.xcode.env.local`은 이전 Mac에서 복사하지 않고 다시 생성.
@@ -178,7 +178,7 @@ Apple은 기존 app record에서 incremental version을 생성하도록 안내�
 2. signing 연결을 확인한다.
 
 ```bash
-cd OnMyWay_FE_V2/android
+cd OnMyWay_FE_V3/android
 ./gradlew signingReport
 ```
 
@@ -203,7 +203,7 @@ NODE_ENV=production ./gradlew :app:processReleaseMainManifest :app:bundleRelease
 3. CocoaPods가 동기화된 workspace를 Xcode에서 연다.
 
 ```bash
-open OnMyWay_FE_V2/ios/omw_front.xcworkspace
+open OnMyWay_FE_V3/ios/omw_front.xcworkspace
 ```
 
 4. scheme `omw_front`, Release, generic iOS device로 `Product > Archive`를 실행한다. Organizer에서 Validate 후 기존 App Store Connect app record로 Upload한다.

@@ -10,7 +10,7 @@ are written down here as steering rules, specs and hooks.
 │   ├── product.md                              what OnMyWay is, principles, out of scope
 │   ├── tech.md                                 pinned toolchain, commands, constraints
 │   ├── structure.md                            repo layout, layering rules, doc ownership
-│   ├── map-provider-policy.md                  fileMatch: OnMyWay_BE_V2/src/modules/map/**
+│   ├── map-provider-policy.md                  fileMatch: OnMyWay_BE_V3/src/modules/map/**
 │   ├── release-safety.md                       manual: #release-safety
 │   ├── security-and-observability.md           secrets, keys, logging, health
 │   └── definition-of-done.md                   verification and honest status words

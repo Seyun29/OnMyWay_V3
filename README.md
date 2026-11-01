@@ -69,9 +69,9 @@ While Kiro moved the code, I made the policy calls (the eight decisions above) a
 
 | When | Setup | Code |
 | --- | --- | --- |
-| 2024.06 | First release. Single EC2 API server (NestJS, PM2) behind Cloudflare, GitHub Actions, CodePush | git history of `OnMyWay_BE_V2` and `OnMyWay_FE_V2` |
+| 2024.06 | First release. Single EC2 API server (NestJS, PM2) behind Cloudflare, GitHub Actions, CodePush | git history of `OnMyWay_BE_V3` and `OnMyWay_FE_V3` |
 | 2024.08 | High-availability setup on ECS Fargate across 2 AZs, Spring auth and proxy server, Jenkins CI/CD | [`legacy/OnMyWay_AUTH_V2`](legacy/OnMyWay_AUTH_V2) |
-| 2024.11 | API and auth servers rebuilt as Kubernetes manifests (Deployment, Service) | [`legacy/OnMyWay_V3`](legacy/OnMyWay_V3) · [Seyun29/OnMyWay_V3](https://github.com/Seyun29/OnMyWay_V3) |
+| 2024.11 | API and auth servers rebuilt as Kubernetes manifests (Deployment, Service) | [`legacy/OnMyWay_K8S_V2`](legacy/OnMyWay_K8S_V2) · [Seyun29/OnMyWay_V3](https://github.com/Seyun29/OnMyWay_V3) |
 | 2025.03 | Maintained up to 2.1.2 on both stores | |
 
 - Planned in March 2024 and released v1.0.0 on June 4. Shipped six updates in June alone, up to v1.0.6 (parking filter, category search, TMap handoff).
@@ -84,7 +84,7 @@ While Kiro moved the code, I made the policy calls (the eight decisions above) a
 
 The full setup and load test results are in [`legacy/README.md`](legacy/README.md). All secrets in `legacy/` are masked.
 
-> "V3 migration" in `docs/` refers to the 2026 work, not to `legacy/OnMyWay_V3` (the 2024 Kubernetes version).
+> Naming: `OnMyWay_BE_V3` and `OnMyWay_FE_V3` are the current 2026 version (V3). Everything under `legacy/` is from 2024 (V2).
 
 ## Current architecture
 
@@ -111,7 +111,7 @@ pnpm install          # backend and app dependencies, plus CocoaPods
 pnpm dev:ios          # backend + Metro + iOS simulator (pnpm dev:android for Android)
 ```
 
-Copy `.env.example` to `.env` in both `OnMyWay_BE_V2` and `OnMyWay_FE_V2` and fill in the keys. The local server runs on port `3005`.
+Copy `.env.example` to `.env` in both `OnMyWay_BE_V3` and `OnMyWay_FE_V3` and fill in the keys. The local server runs on port `3005`.
 
 ## What's left
 

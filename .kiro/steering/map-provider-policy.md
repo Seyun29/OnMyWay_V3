@@ -1,6 +1,6 @@
 ---
 inclusion: fileMatch
-fileMatchPattern: "OnMyWay_BE_V2/src/modules/map/**"
+fileMatchPattern: "OnMyWay_BE_V3/src/modules/map/**"
 ---
 
 # Map Provider Policy

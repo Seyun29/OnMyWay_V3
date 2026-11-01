@@ -101,7 +101,7 @@ BE는 AUTH 서버와 코드 의존이 없다. 정리만 하면 됨:
 
 기존엔 AUTH가 `/map/**`을 BE로 프록시했다. AUTH 제거 후 FE가 BE를 직접 바라보게 변경:
 
-- `OnMyWay_FE_V2/src/config/consts/api.ts`
+- `OnMyWay_FE_V3/src/config/consts/api.ts`
   - 하드코딩된 ALB URL(`http://alb-omw-...:8080/`) 삭제
   - 주석 처리돼 있는 `export const BASE_URL = SERVER_BASEURL;` (@env) 방식으로 복원
 - BE 라우트가 이미 `/map/*` prefix를 갖고 있으므로 경로 변경은 불필요
@@ -111,7 +111,7 @@ BE는 AUTH 서버와 코드 의존이 없다. 정리만 하면 됨:
 ## 2단계: CI/CD 제거
 
 ```bash
-git rm OnMyWay_BE_V2/Jenkinsfile
+git rm OnMyWay_BE_V3/Jenkinsfile
 git rm legacy/OnMyWay_AUTH_V2/Jenkinsfile   # legacy 이관 후
 ```
 
@@ -128,7 +128,7 @@ git rm legacy/OnMyWay_AUTH_V2/Jenkinsfile   # legacy 이관 후
 `.env`는 유실됐으므로 `.env.example`을 기준으로 새로 발급/작성한다.
 (각 프로젝트에 `.env.example`이 생성돼 있음 → `cp .env.example .env` 후 값 채우기)
 
-### 3-1. BE (`OnMyWay_BE_V2/.env`)
+### 3-1. BE (`OnMyWay_BE_V3/.env`)
 
 | 변수                                | 용도                                                              | 발급처                                                    |
 | ----------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------- |
@@ -150,7 +150,7 @@ provider 간 fallback은 하지 않는다. 개발 중에는 localhost BE에서 �
 `TMAP_API_KEY`는 후속 adapter를 실제 활성화할 때만 추가한다. 버린 것: `MONGO_DB_URI`,
 AUTH 관련 DB/JWT 설정, OpenAI 리뷰 요약 설정.
 
-### 3-2. FE (`OnMyWay_FE_V2/.env` 및 native build config)
+### 3-2. FE (`OnMyWay_FE_V3/.env` 및 native build config)
 
 | 변수                          | 용도                                | 값/제한                                                                                                                              |
 | ----------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -332,13 +332,13 @@ brew install --cask android-studio
 
 ```bash
 # 터미널 1: BE
-cd OnMyWay_BE_V2
+cd OnMyWay_BE_V3
 cp .env.example .env   # 최초 1회, 값 채우기
 pnpm install
 pnpm start:dev         # http://localhost:3005
 
 # 터미널 2: FE Metro 번들러
-cd OnMyWay_FE_V2
+cd OnMyWay_FE_V3
 cp .env.example .env   # 최초 1회
 npm install            # (또는 선택한 패키지 매니저)
 npm start
@@ -693,7 +693,7 @@ Airbnb·Tripadvisor 같은 특정 인수자에 맞춘 기능을 만드는 대신
 
 ### 7-1. 현재 FE 상태
 
-`OnMyWay_FE_V2`는 React Native Community CLI 기반 bare 프로젝트다.
+`OnMyWay_FE_V3`는 React Native Community CLI 기반 bare 프로젝트다.
 
 - React Native `0.73.6`, React `18.2.0`
 - `android/`, `ios/`를 직접 관리
@@ -902,16 +902,16 @@ production
 
 ```bash
 # 터미널 1: BE (포트 3005 — 3000·3001은 다른 로컬 프로젝트가 점유)
-corepack pnpm --dir OnMyWay_BE_V2 run start:dev
+corepack pnpm --dir OnMyWay_BE_V3 run start:dev
 
 # 터미널 2: 에뮬레이터
 $ANDROID_HOME/emulator/emulator -avd omw_pixel
 
 # 터미널 3: Metro
-cd OnMyWay_FE_V2 && npx react-native start   # .env 변경 시 --reset-cache
+cd OnMyWay_FE_V3 && npx react-native start   # .env 변경 시 --reset-cache
 
 # 터미널 4: 빌드/설치 (Apple Silicon은 arm64 플래그 필수)
-cd OnMyWay_FE_V2/android
+cd OnMyWay_FE_V3/android
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 ./gradlew assembleDebug -PreactNativeArchitectures=arm64-v8a
 adb install -r app/build/outputs/apk/debug/app-debug.apk

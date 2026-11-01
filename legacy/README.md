@@ -6,7 +6,7 @@
 | 폴더 | 시기 | 내용 |
 | --- | --- | --- |
 | [`OnMyWay_AUTH_V2/`](OnMyWay_AUTH_V2) | 2024.08 | Spring Boot 인증·프록시 서버. API 서버 앞단에서 JWT 인가와 reverse proxy, 병목 경로 캐싱을 맡았다 |
-| [`OnMyWay_V3/`](OnMyWay_V3) | 2024.11–12 | API·인증 서버를 Kubernetes 매니페스트로 다시 구성한 버전. 원본 저장소: [Seyun29/OnMyWay_V3](https://github.com/Seyun29/OnMyWay_V3) |
+| [`OnMyWay_K8S_V2/`](OnMyWay_K8S_V2) | 2024.11–12 | API·인증 서버를 Kubernetes 매니페스트로 다시 구성한 버전. 원본 저장소: [Seyun29/OnMyWay_V3](https://github.com/Seyun29/OnMyWay_V3) |
 
 ## 2024.08 — ECS Fargate 고가용성 구조 (LG CNS 인턴 최종 과제)
 
@@ -35,9 +35,9 @@
 
 <img width="640" alt="JMeter result after migration" src="https://github.com/user-attachments/assets/a62b01de-063d-4d44-bf48-11a13f1550a5">
 
-## 2024.11–12 — Kubernetes (`OnMyWay_V3/`)
+## 2024.11–12 — Kubernetes (`OnMyWay_K8S_V2/`)
 
-같은 두 백엔드를 Kubernetes 매니페스트로 다시 구성했다. 설정은 [`OnMyWay_V3/master-deployment.yaml`](OnMyWay_V3/master-deployment.yaml) 한 파일에 있다.
+같은 두 백엔드를 Kubernetes 매니페스트로 다시 구성했다. 설정은 [`OnMyWay_K8S_V2/master-deployment.yaml`](OnMyWay_K8S_V2/master-deployment.yaml) 한 파일에 있다.
 
 ```text
 Client

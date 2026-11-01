@@ -6,9 +6,9 @@
   "when": {
     "type": "fileEdited",
     "patterns": [
-      "OnMyWay_BE_V2/src/**/*.ts",
-      "OnMyWay_FE_V2/src/**/*.ts",
-      "OnMyWay_FE_V2/src/**/*.tsx"
+      "OnMyWay_BE_V3/src/**/*.ts",
+      "OnMyWay_FE_V3/src/**/*.ts",
+      "OnMyWay_FE_V3/src/**/*.tsx"
     ]
   },
   "then": {

@@ -6,7 +6,7 @@ inclusion: always
 
 ```text
 .
-├── OnMyWay_BE_V2/              NestJS 11 API (Docker image → Railway)
+├── OnMyWay_BE_V3/              NestJS 11 API (Docker image → Railway)
 │   ├── src/modules/map/
 │   │   ├── map.controller.ts   HTTP wire contract (/map/*). Do not change shapes casually.
 │   │   ├── map.service.ts      Thin facade → use cases
@@ -15,7 +15,7 @@ inclusion: always
 │   │   └── providers/          Ports, adapters, resolvers, MarketConfig, geofence, errors
 │   ├── Dockerfile              Multi-stage, non-root, HEALTHCHECK /health
 │   └── railway.json            Config-as-code for Railway
-├── OnMyWay_FE_V2/              React Native 0.86 app (bare + Expo modules)
+├── OnMyWay_FE_V3/              React Native 0.86 app (bare + Expo modules)
 │   ├── src/api/                Axios wrappers. Every call carries Accept-Language.
 │   ├── src/components/maps/    OmwMapView, MapMarker, MapPath, MapPolygon (renderer-neutral)
 │   ├── src/config/helpers/     routeBuffer, routeRegion, nmapLink, googleMapLink, …

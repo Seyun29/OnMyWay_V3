@@ -19,7 +19,7 @@ flowchart LR
   end
   subgraph After["2026"]
     A2["App"] -->|"HTTPS"| RW["Railway proxy"] --> API2["NestJS 11 container<br/>node dist/main.js"]
-    GH["GitHub push<br/>(watch: /OnMyWay_BE_V2/**)"] -->|"Dockerfile build"| RW
+    GH["GitHub push<br/>(watch: /OnMyWay_BE_V3/**)"] -->|"Dockerfile build"| RW
   end
 ```
 
@@ -41,7 +41,7 @@ Node image can hold stale registry signing keys and reject newer pnpm releases.
 | Setting | Value | Why |
 | --- | --- | --- |
 | Builder | `DOCKERFILE` | Same image locally and in production |
-| Watch paths | `/OnMyWay_BE_V2/**` | No API redeploy for FE or docs commits |
+| Watch paths | `/OnMyWay_BE_V3/**` | No API redeploy for FE or docs commits |
 | Health check | `/health`, 120 s | New deployment must be healthy before it replaces the old one |
 | Restart | `ON_FAILURE`, max 10 | Restart crashes only |
 | Variables | API keys, Swagger credentials | `.env` is never uploaded. `PORT` comes from Railway |

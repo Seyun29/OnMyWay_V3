@@ -88,10 +88,10 @@
 
 관련 코드:
 
-- `OnMyWay_BE_V2/src/modules/map/map.service.ts`
-- `OnMyWay_BE_V2/src/helpers/selectVertices.ts`
-- `OnMyWay_BE_V2/src/apis/kakaoPlaceSearch.ts`
-- `OnMyWay_BE_V2/src/config/consts.ts`
+- `OnMyWay_BE_V3/src/modules/map/map.service.ts`
+- `OnMyWay_BE_V3/src/helpers/selectVertices.ts`
+- `OnMyWay_BE_V3/src/apis/kakaoPlaceSearch.ts`
+- `OnMyWay_BE_V3/src/config/consts.ts`
 
 현재 흐름은 다음과 같다.
 

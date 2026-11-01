@@ -34,22 +34,22 @@
 
 - [x] Railway project에서 GitHub 저장소를 연결하고 Backend service 생성
 - [ ] Service Settings → Source의 production branch를 실제 release branch로 고정
-- [ ] **Root Directory**를 `/OnMyWay_BE_V2`로 설정
-- [ ] **Railway Config File**을 `/OnMyWay_BE_V2/railway.json`으로 설정. Config 파일 경로는 Root Directory가 자동 적용되지 않으므로 저장소 루트 기준 절대 경로를 사용한다.
+- [ ] **Root Directory**를 `/OnMyWay_BE_V3`로 설정
+- [ ] **Railway Config File**을 `/OnMyWay_BE_V3/railway.json`으로 설정. Config 파일 경로는 Root Directory가 자동 적용되지 않으므로 저장소 루트 기준 절대 경로를 사용한다.
 - [x] `railway.json`의 builder를 `DOCKERFILE`로 고정
-- [x] **Watch Paths**를 `/OnMyWay_BE_V2/**`로 설정. FE·docs만 바뀐 commit은 Backend를 재배포하지 않는다.
+- [x] **Watch Paths**를 `/OnMyWay_BE_V3/**`로 설정. FE·docs만 바뀐 commit은 Backend를 재배포하지 않는다.
 - [x] Docker image build, runtime startup과 production deployment 완료
 - [ ] Railway Build Command와 Start Command는 비워 둔다. 설치·build는 Dockerfile build stage, 실행은 Dockerfile `CMD ["node", "dist/main.js"]`가 담당한다.
 - [ ] Dockerfile이 Node `22.13.0`, pnpm `10.15.1`, production dependency, non-root `node` 사용자로 실행되는지 확인
 - [ ] production branch 자동 배포 사용 여부를 결정한다. 사용 시 merge 전 CI 통과를 필수로 하고, 수동 배포면 release SHA를 기록한다.
 
-현재 저장된 `OnMyWay_BE_V2/railway.json` 기준값:
+현재 저장된 `OnMyWay_BE_V3/railway.json` 기준값:
 
 ```json
 {
   "build": {
     "builder": "DOCKERFILE",
-    "watchPatterns": ["/OnMyWay_BE_V2/**"]
+    "watchPatterns": ["/OnMyWay_BE_V3/**"]
   },
   "deploy": {
     "healthcheckPath": "/health",
@@ -62,7 +62,7 @@
 
 ### 2-2. Railway Variables와 `.env`
 
-`.env` 파일은 Railway에 업로드하거나 Git에 커밋하지 않는다. Service → **Variables**에서 production 환경에 아래 이름을 등록한다. 값은 로컬 `OnMyWay_BE_V2/.env`의 검증된 값을 비밀 저장소에서 복사하되 문서·채팅·배포 로그에 남기지 않는다.
+`.env` 파일은 Railway에 업로드하거나 Git에 커밋하지 않는다. Service → **Variables**에서 production 환경에 아래 이름을 등록한다. 값은 로컬 `OnMyWay_BE_V3/.env`의 검증된 값을 비밀 저장소에서 복사하되 문서·채팅·배포 로그에 남기지 않는다.
 
 | 변수 | 설정 주체 | 설정 방법 |
 | --- | --- | --- |
@@ -150,11 +150,11 @@ Railway 설정 근거: [Dockerfile 배포](https://docs.railway.com/builds/docke
 
 ### 로컬 release bundle 확인
 
-ignored `OnMyWay_FE_V2/.env`에 production URL을 설정한 뒤 다음을 실행한다. `.env`는 커밋하지 않는다.
+ignored `OnMyWay_FE_V3/.env`에 production URL을 설정한 뒤 다음을 실행한다. `.env`는 커밋하지 않는다.
 
 ```bash
-corepack pnpm@10.15.1 --dir OnMyWay_FE_V2 run bundle:android
-corepack pnpm@10.15.1 --dir OnMyWay_FE_V2 run bundle:ios
+corepack pnpm@10.15.1 --dir OnMyWay_FE_V3 run bundle:android
+corepack pnpm@10.15.1 --dir OnMyWay_FE_V3 run bundle:ios
 ```
 
 ## 4. EAS Build·Update 채널 구성

@@ -24,12 +24,12 @@
 
 | 책임 | 파일/컴포넌트 | 현재 역할 |
 | --- | --- | --- |
-| 표시 여부와 입력값 | `OnMyWay_FE_V2/src/components/maps/naverMap.tsx`의 `NaverMap` | 검색 결과 전에는 indicator 표시, 결과 화면에서는 숨김. route와 radiusKm 전달 |
-| buffer geometry | `OnMyWay_FE_V2/src/config/helpers/routeBuffer.ts`의 `createRouteBufferPolygons` | route를 km 단위로 buffer하고 Polygon/MultiPolygon을 outer/holes 구조로 변환 |
-| indicator 스타일 | `OnMyWay_FE_V2/src/components/paths/candidatePaths.tsx`의 `SearchRadiusIndicator` | 약 8% alpha fill과 폭 1px boundary를 함께 렌더링 |
-| Naver/Google 분기 | `OnMyWay_FE_V2/src/components/maps/mapPrimitives.tsx`의 `MapPath` | Google `Polyline` 또는 Naver `NaverMapPathOverlay` 렌더링 |
-| 반경 UI 상태 | `OnMyWay_FE_V2/src/components/keywordSearchBox.tsx`의 `KeywordSearchBox` | slider 값을 km 단위로 갱신 |
-| 지도 renderer 선택 | `OnMyWay_FE_V2/src/components/maps/omwMapView.tsx` | Naver Map과 Google Map view 전환 |
+| 표시 여부와 입력값 | `OnMyWay_FE_V3/src/components/maps/naverMap.tsx`의 `NaverMap` | 검색 결과 전에는 indicator 표시, 결과 화면에서는 숨김. route와 radiusKm 전달 |
+| buffer geometry | `OnMyWay_FE_V3/src/config/helpers/routeBuffer.ts`의 `createRouteBufferPolygons` | route를 km 단위로 buffer하고 Polygon/MultiPolygon을 outer/holes 구조로 변환 |
+| indicator 스타일 | `OnMyWay_FE_V3/src/components/paths/candidatePaths.tsx`의 `SearchRadiusIndicator` | 약 8% alpha fill과 폭 1px boundary를 함께 렌더링 |
+| Naver/Google 분기 | `OnMyWay_FE_V3/src/components/maps/mapPrimitives.tsx`의 `MapPath` | Google `Polyline` 또는 Naver `NaverMapPathOverlay` 렌더링 |
+| 반경 UI 상태 | `OnMyWay_FE_V3/src/components/keywordSearchBox.tsx`의 `KeywordSearchBox` | slider 값을 km 단위로 갱신 |
+| 지도 renderer 선택 | `OnMyWay_FE_V3/src/components/maps/omwMapView.tsx` | Naver Map과 Google Map view 전환 |
 
 현재 호출 흐름은 다음과 같다.
 

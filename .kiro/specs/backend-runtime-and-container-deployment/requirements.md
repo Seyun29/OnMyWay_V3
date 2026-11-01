@@ -48,7 +48,7 @@ removes the gateway and the Jenkins/ECR/ECS pipeline, and ships the API as a Doc
 
 #### Acceptance Criteria
 
-1. `railway.json` SHALL use the Dockerfile builder and watch only `/OnMyWay_BE_V2/**`, so FE- or docs-only commits do not redeploy the API.
+1. `railway.json` SHALL use the Dockerfile builder and watch only `/OnMyWay_BE_V3/**`, so FE- or docs-only commits do not redeploy the API.
 2. Deploys SHALL pass the `/health` check within 120 s before traffic switches. Restart policy SHALL be `ON_FAILURE` with at most 10 retries.
 3. Secrets (`GOOGLE_MAPS_SERVER_API_KEY`, `KAKAO_API_KEY`, `SWAGGER_USER`, `SWAGGER_PASSWORD`) SHALL live in Railway Variables. `PORT` SHALL be injected by Railway.
 4. The production origin SHALL be served over HTTPS and embedded in production app bundles.

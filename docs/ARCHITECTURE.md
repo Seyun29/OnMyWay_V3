@@ -7,7 +7,7 @@
 
 ```text
 ┌─────────────────────────────┐        ┌──────────────────────────────────┐
-│  OnMyWay_FE_V2 (RN 0.86.2)  │        │  OnMyWay_BE_V2 (NestJS 11.1.28)  │
+│  OnMyWay_FE_V3 (RN 0.86.2)  │        │  OnMyWay_BE_V3 (NestJS 11.1.28)  │
 │                             │  HTTP  │                                  │
 │  src/api/* ── axiosInstance ├───────►│  MapController (/map/*)          │
 │  BASE_URL: Platform.OS 자동 │        │        │                         │
@@ -38,7 +38,7 @@
 
 ## 2. BE Provider Port 구조
 
-위치: `OnMyWay_BE_V2/src/modules/map/providers/`
+위치: `OnMyWay_BE_V3/src/modules/map/providers/`
 
 | 파일                                | 역할                                                                                                |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------- |
@@ -65,7 +65,7 @@
 
 위치:
 
-- FE header: `OnMyWay_FE_V2/src/api/axios.ts`
+- FE header: `OnMyWay_FE_V3/src/api/axios.ts`
 - BE context/policy: `providers/map-request-context.ts`, `providers/market-config.ts`
 - non-route resolver: `providers/language-map-provider.resolver.ts`
 - route resolver/geofence: `providers/route-map-provider.resolver.ts`, `providers/route-region.ts`
@@ -110,10 +110,10 @@ renderer(Naver/Google) 선택은 이 데이터 provider 결정에 영향을 주�
 
 위치:
 
-- dictionary/translator: `OnMyWay_FE_V2/src/i18n/dictionaries.ts`
-- Recoil hook: `OnMyWay_FE_V2/src/hooks/useTranslation.ts`
-- transient reset: `OnMyWay_FE_V2/src/hooks/useResetMapSession.ts`
-- navigation boundary: `OnMyWay_FE_V2/App.tsx`
+- dictionary/translator: `OnMyWay_FE_V3/src/i18n/dictionaries.ts`
+- Recoil hook: `OnMyWay_FE_V3/src/hooks/useTranslation.ts`
+- transient reset: `OnMyWay_FE_V3/src/hooks/useResetMapSession.ts`
+- navigation boundary: `OnMyWay_FE_V3/App.tsx`
 
 최초 설치 후 첫 실행에서만 기기 locale을 기본값으로 사용한다. `ko` prefix면 `ko`, 그 외
 모든 기기 언어는 `en`을 선택하고 AsyncStorage `language` key에 즉시 저장한다. 이후 앱
@@ -145,8 +145,8 @@ alert, toast 없이 처리하므로 이전 언어 응답이 새 세션 상태를
 
 위치:
 
-- 공용 컨테이너: `OnMyWay_FE_V2/src/components/maps/omwMapView.tsx`
-- 공용 마커/경로: `OnMyWay_FE_V2/src/components/maps/mapPrimitives.tsx`
+- 공용 컨테이너: `OnMyWay_FE_V3/src/components/maps/omwMapView.tsx`
+- 공용 마커/경로: `OnMyWay_FE_V3/src/components/maps/mapPrimitives.tsx`
 - 상태/기본값: `src/atoms/mapRendererState.ts`, `src/config/mapRenderer.ts`
 
 지도 타일 renderer는 드로어의 `지도 설정`에서 `국내 지도`(Naver, `@mj-studio/react-native-naver-map`)와
@@ -182,7 +182,7 @@ native key 배선(값은 Git 밖 `.env`에만 저장):
 
 ## 3-1. FE BASE_URL 해석 규칙
 
-위치: `OnMyWay_FE_V2/src/config/consts/api.ts`
+위치: `OnMyWay_FE_V3/src/config/consts/api.ts`
 
 ```text
 개발 build:

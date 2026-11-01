@@ -415,7 +415,7 @@ FE 로그에 `/map/get-address` timeout, 이어서
 
 ## 2026-08-06 — Android signing 정리
 
-- release upload keystore를 `OnMyWay_FE_V2/android/app/`로 복원 (Git 제외 확인)
+- release upload keystore를 `OnMyWay_FE_V3/android/app/`로 복원 (Git 제외 확인)
 - signing 비밀번호 4개를 project `gradle.properties` → `~/.gradle/gradle.properties`(600)로 이전
 - `signingReport`로 release keystore/alias/SHA-1 인식 확인
 - 사용자가 Play Console Upload certificate SHA-1 일치 확인 완료
